@@ -67,7 +67,7 @@ The included `.github/workflows/deploy.yml` file is the automatic publishing set
 
 ### Current publishing status and next steps
 
-The repository is public, and the automatic publishing workflow is in place. The temporary preview address will be `https://scoobysnackenjoyer.github.io/greekandall.com/` after the first successful deployment. No custom-domain or DNS changes have been made.
+The repository is public, and GitHub Pages is set to use GitHub Actions. The first successful deployment is now being checked. The temporary preview address will be `https://scoobysnackenjoyer.github.io/greekandall.com/`. No custom-domain or DNS changes have been made.
 
 1. In the repository, open **Settings → Pages**. Under **Build and deployment**, choose **GitHub Actions** as the source, or check that it is already selected.
 2. In **Actions**, open **Publish Greek & All website** and wait for the latest run to complete successfully. If it has not run, a new update to the `main` branch starts it automatically.
@@ -82,7 +82,7 @@ Tell me the design or content changes you want. I can update this project and pu
 
 When you select an ordering vendor, we can connect its supported ordering link, widget or integration. That is a separate step from publishing the visual site. Until then, this page does not accept payments, create kitchen tickets, notify staff or riders, or save customer details.
 
-The repository is public, and the website files plus automatic publishing workflow are in place. No custom-domain or DNS changes have been made.
+The repository is public, and GitHub Pages is set to use the automatic publishing workflow. The first successful deployment is still pending; no custom-domain or DNS changes have been made.
 
 ## Project files
 
