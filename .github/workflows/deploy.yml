@@ -1,0 +1,45 @@
+name: Publish Greek & All website
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the website files
+        uses: actions/checkout@v6
+
+      - name: Prepare GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Gather the website files
+        run: |
+          mkdir -p _site/assets
+          cp index.html config.js script.js styles.css _site/
+          cp -R assets/. _site/assets/
+          touch _site/.nojekyll
+
+      - name: Upload the website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Publish the website
+        id: deployment
+        uses: actions/deploy-pages@v4

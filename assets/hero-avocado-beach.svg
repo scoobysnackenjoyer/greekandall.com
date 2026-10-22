@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 500" role="img" aria-labelledby="title desc">
+  <title id="title">Avocado's beach break</title>
+  <desc id="desc">A relaxed avocado in sunglasses lounges on a beach chair and sips a citrus drink.</desc>
+  <defs><filter id="shadow" x="-.2" y="-.2" width="1.4" height="1.5"><feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#174634" flood-opacity=".13"/></filter></defs>
+  <circle cx="327" cy="247" r="203" fill="#f7d967" opacity=".45"/>
+  <path d="M60 390c122-56 292-53 500 1" fill="none" stroke="#d8bc72" stroke-width="4" stroke-linecap="round"/>
+  <path d="M87 420c145-27 283-22 419 7" fill="none" stroke="#e4cf97" stroke-width="3" stroke-linecap="round"/>
+  <path d="M483 384V103m0 10-105 49h105" fill="none" stroke="#d5744e" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M481 107c-90-22-154 2-187 66 68 12 129-9 187-66Z" fill="#e98b63" stroke="#d5744e" stroke-width="5"/>
+  <path d="M481 109c31 28 43 61 36 102" fill="none" stroke="#fff3dc" stroke-width="4" stroke-linecap="round"/>
+  <g filter="url(#shadow)" transform="rotate(-8 296 286)">
+    <path d="m165 331 63-112 143 82-64 112Z" fill="#d5744e" stroke="#a94f38" stroke-width="7" stroke-linejoin="round"/>
+    <path d="m224 226 141 81M184 365l63-113m29 130 63-113" stroke="#f5d59b" stroke-width="10" stroke-linecap="round"/>
+    <path d="m203 208 99 142m61-53-99 154" stroke="#a94f38" stroke-width="8" stroke-linecap="round"/>
+    <path d="M189 329c-10-109 27-212 112-222 75-9 137 72 118 176-18 95-83 154-154 144-42-6-69-39-76-98Z" fill="#3f794f" stroke="#24583d" stroke-width="8"/>
+    <path d="M218 317c-8-82 21-154 81-161 54-6 96 52 82 130-13 70-59 113-111 106-31-4-47-28-52-75Z" fill="#f0e4bc"/>
+    <ellipse cx="300" cy="333" rx="33" ry="37" fill="#b87942" stroke="#925c34" stroke-width="5"/>
+    <path d="m244 230 55 3m34-2 45-16" stroke="#19372f" stroke-width="19" stroke-linecap="round"/>
+    <path d="m273 230 39 1m23-4 30-12" stroke="#f7c94f" stroke-width="5" stroke-linecap="round"/>
+    <path d="M305 283c9 7 17 7 25 1" fill="none" stroke="#24583d" stroke-width="5" stroke-linecap="round"/>
+    <path d="M280 387c19 12 38 11 55-1" fill="none" stroke="#24583d" stroke-width="5" stroke-linecap="round"/>
+    <path d="m191 288-37-19m226-21 31-25" stroke="#24583d" stroke-width="9" stroke-linecap="round"/>
+    <path d="m147 267-28-34m279-10 28-37" stroke="#3f794f" stroke-width="13" stroke-linecap="round"/>
+    <circle cx="113" cy="229" r="16" fill="#f0e4bc" stroke="#3f794f" stroke-width="7"/><circle cx="458" cy="183" r="16" fill="#f0e4bc" stroke="#3f794f" stroke-width="7"/>
+  </g>
+  <g transform="translate(430 291) rotate(8)">
+    <path d="M14 26h67l-7 91c-1 13-11 22-24 22h-5c-13 0-22-9-23-22l-8-91Z" fill="#e9f0d8" stroke="#285a43" stroke-width="6"/>
+    <path d="M25 70h47l-4 45c-1 9-8 15-17 15h-4c-10 0-16-6-17-15l-5-45Z" fill="#ef9e48"/>
+    <path d="M48 25 38-7m7 15 30-12" fill="none" stroke="#285a43" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="31" cy="90" r="3" fill="#285a43"/><circle cx="64" cy="90" r="3" fill="#285a43"/><path d="M39 103c6 5 13 5 19 0" fill="none" stroke="#285a43" stroke-width="4" stroke-linecap="round"/>
+    <path d="m37 25 10-9 9 9" fill="#f7c94f" stroke="#285a43" stroke-width="4" stroke-linejoin="round"/>
+  </g>
+  <path d="M97 154c10-23 14-23 24 0 23 10 23 14 0 24-10 23-14 23-24 0-23-10-23-14 0-24Z" fill="#f0b936"/>
+  <path d="M509 427c8-18 11-18 19 0 18 8 18 11 0 19-8 18-11 18-19 0-18-8-18-11 0-19Z" fill="#d5744e"/>
+</svg>
