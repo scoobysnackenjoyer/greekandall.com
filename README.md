@@ -65,16 +65,17 @@ This project is ready to be published as a public design preview. The sample men
 
 The included `.github/workflows/deploy.yml` file is the automatic publishing setup. Once this folder is in a GitHub repository and GitHub Pages is enabled, every approved update sent to the `main` branch is automatically published. Visitors then see the latest published design. Future design changes do not require rebuilding the site by hand.
 
-### One-time setup
+### Current publishing status and next steps
 
-1. Sign in to or create a GitHub account. GitHub is where the website's files will be stored. For GitHub's free Pages hosting, the website repository needs to be public; the website files and images are public when the site is live anyway.
-2. Connect that GitHub account in ChatGPT using the GitHub connection option. This lets me put the site files in the repository and publish future approved updates for you.
-3. After it is connected, I can create a public repository named `greek-and-all-website`, add the site files and enable the included automatic publishing workflow.
-4. GitHub will show a temporary `github.io` preview address. Check that first, before pointing your domain to it.
-5. In the repository's **Settings → Pages → Custom domain**, add `greekandall.com`.
-6. Sign in to the company where you bought `greekandall.com`, open its DNS settings, and enter the exact records GitHub Pages displays for the domain. Do not guess or remove existing DNS records. If the domain already points to another service, check before replacing those records.
-7. Return to GitHub Pages and wait for it to confirm the domain and enable HTTPS. DNS updates can take time to appear everywhere.
-8. Open `https://greekandall.com` on a phone and computer. The design preview will be public; the preview checkout still will not send orders.
+The GitHub account is connected, and the website files are saved in the existing `greekandall.com` repository. The repository is private. GitHub Pages has not published the site yet; its Pages setting still needs to be enabled, and no workflow run has started.
+
+1. Choose whether to make the repository public for free GitHub Pages, or keep it private and use an eligible paid GitHub plan or a different host. A public repository makes the project files and edit history visible. Do not store passwords, payment keys or customer information in this project.
+2. In the repository, open **Settings → Pages**. Under **Build and deployment**, choose **GitHub Actions** as the source. The workflow in `.github/workflows/deploy.yml` then publishes updates sent to `main` automatically.
+3. Wait for the first **Publish Greek & All website** workflow run to finish. GitHub will show a temporary `github.io` preview address. Check it before pointing the domain to it.
+4. In **Settings → Pages → Custom domain**, add `greekandall.com`.
+5. Sign in to the company where you bought `greekandall.com`, open its DNS settings, and enter the exact records GitHub Pages displays for the domain. Do not guess or remove existing DNS records. If the domain already points to another service, check before replacing those records.
+6. Return to GitHub Pages and wait for it to confirm the domain and enable HTTPS. DNS updates can take time to appear everywhere.
+7. Open `https://greekandall.com` on a phone and computer. The design preview will be public; the preview checkout still will not send orders.
 
 ### How later edits reach visitors
 
@@ -82,7 +83,7 @@ Tell me the design or content changes you want. I can update this project and pu
 
 When you select an ordering vendor, we can connect its supported ordering link, widget or integration. That is a separate step from publishing the visual site. Until then, this page does not accept payments, create kitchen tickets, notify staff or riders, or save customer details.
 
-No hosting account has been connected and no domain or DNS changes have been made yet. The GitHub Pages workflow is prepared in this folder but has not been uploaded or run.
+The GitHub account is connected and the website files plus automatic publishing workflow are in the repository. GitHub Pages is not active yet, and no custom-domain or DNS changes have been made.
 
 ## Project files
 
