@@ -75,7 +75,7 @@ dialog{color:var(--ink)}.product-dialog,.cart-dialog{padding:0;border:0;backgrou
 .juice-bottle{background:linear-gradient(to bottom,transparent 34%,var(--poppy-coral) 34%)}
 .juice-bottle:before{background:var(--poppy-pink)}
 .juice-copy .eyebrow{color:var(--poppy-green)}
-.products-heading h2 em,.hero h1 em,.section-heading h2 em,.way-copy h2 em,.dialog-product-copy h2 em,.cart-header h2 em{color:var(--poppy-coral);text-decoration-color:var(--poppy-sky)}
+.products-heading h2 em,.hero h1 em,.section-heading h2 em,.way-copy h2 em,.dialog-product-copy h2 em,.cart-header h2 em{color:var(--poppy-coral);text-decoration-color:var(--edit-visit-background)}
 .category-card h3,.category-card p,.category-card .category-action{color:var(--ink)}
 .category-card p{font-weight:600}
 .category-card:nth-child(5n) h3,.category-card:nth-child(5n) p,.category-card:nth-child(5n) .category-action{color:#fff}
