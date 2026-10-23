@@ -131,6 +131,8 @@ html.has-scroll-reveal [data-reveal]{
 html.has-scroll-reveal [data-reveal="left"]{transform:translate3d(-24px,0,0)}
 html.has-scroll-reveal [data-reveal="right"]{transform:translate3d(24px,0,0)}
 html.has-scroll-reveal [data-reveal].is-visible{opacity:1;transform:translate3d(0,0,0)}
+html.has-scroll-reveal .menu-card[data-reveal].is-visible:hover{transform:translateY(-4px)}
+html.has-scroll-reveal .product-card[data-reveal].is-visible:hover{transform:translateY(-3px)}
 html.has-scroll-reveal .menu-card[data-reveal],
 html.has-scroll-reveal .product-card[data-reveal]{
   transition-property:opacity,transform,box-shadow;
