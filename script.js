@@ -320,7 +320,7 @@
   function cartCount() { return cart.reduce((sum, item) => sum + item.quantity, 0); }
   function cartSubtotal() { return cart.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0); }
 
-  function addToCart(product, selections, extras, quantity) {
+  function addToCart(product, selections, extras, quantity, showBag = true) {
     const key = JSON.stringify([product.id, selections.map((item) => item.name), extras.map((item) => item.name)]);
     const unitPrice = Number(product.price) + selections.reduce((sum, item) => sum + Number(item.price || 0), 0) + extras.reduce((sum, item) => sum + Number(item.price || 0), 0);
     const existing = cart.find((item) => item.key === key);
@@ -328,7 +328,7 @@
     else cart.push({ key, productId: product.id, quantity, unitPrice, selections, extras });
     saveCart();
     renderCart();
-    openCart();
+    if (showBag) openCart();
   }
 
   function renderCart() {
@@ -398,8 +398,18 @@
     const quick = event.target.closest("[data-quick-add]");
     if (quick) {
       const product = products.find((item) => item.id === quick.dataset.quickAdd);
-      if (product && (product.modifierGroups || []).some((group) => group.required)) openProduct(product.id);
-      else if (product) addToCart(product, [], [], 1);
+      const hasCustomOptions = product && ((product.modifierGroups || []).length > 0 || (product.extras || []).length > 0);
+      if (product && hasCustomOptions) openProduct(product.id);
+      else if (product) {
+        addToCart(product, [], [], 1, false);
+        const originalText = quick.textContent;
+        quick.textContent = "Added ✓";
+        quick.setAttribute("aria-label", `Added ${product.name} to your bag`);
+        window.setTimeout(() => {
+          quick.textContent = originalText;
+          quick.setAttribute("aria-label", `Quick add ${product.name}`);
+        }, 1400);
+      }
     }
   });
 
