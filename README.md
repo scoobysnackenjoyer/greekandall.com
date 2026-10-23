@@ -111,6 +111,7 @@ Open `styles.css`. Near the bottom, find the comment **EASY DESIGN CONTROLS — 
 | `--edit-salad-background` | Salad story section |
 | `--edit-visit-background` | Visit/location section |
 | `--edit-footer-background` | Footer |
+| `--edit-hero-art-background` | Colored shape behind the opening illustration |
 | `--edit-main-heading` / `--edit-main-copy` | Main heading text / common paragraph text |
 | `--edit-coral-highlight` | Coral emphasis on headings |
 | `--edit-salad-heading` / `--edit-salad-copy` | Salad story text |
@@ -118,6 +119,7 @@ Open `styles.css`. Near the bottom, find the comment **EASY DESIGN CONTROLS — 
 | `--edit-visit-heading` / `--edit-visit-copy` | Visit section heading / paragraph |
 | `--edit-visit-highlight` / `--edit-visit-label` | Emphasized visit heading / small label |
 | `--edit-button-background` / `--edit-button-text` | Main yellow buttons |
+| `--edit-button-hover` | Main button color while the pointer is over it |
 
 Approved brand colors used in the design include cream `#FFF7E8`, ink `#111111`, sunshine yellow `#FFC928`, coral `#F15B45`, forest green `#31543B`, sky blue `#8FD8F5`, poppy pink `#F4A3B8`, olive `#A8B83F`, turquoise `#56C3CC`, and pastel yellow `#FFF0C7`.
 
