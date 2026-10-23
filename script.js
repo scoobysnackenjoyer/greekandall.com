@@ -15,6 +15,67 @@
   };
   const money = (amount) => `₹${Number(amount || 0).toLocaleString("en-IN")}`;
 
+  // Subtle scroll reveals. The stylesheet keeps everything visible when reduced motion is preferred.
+  let revealObserver = null;
+  const revealGroups = [
+    [".hero-copy", "left", false],
+    [".hero-art", "right", false],
+    [".section-heading", "up", false],
+    [".preview-notice", "up", false],
+    [".menu-card", "up", true],
+    [".menu-footnote", "up", false],
+    [".products-heading", "up", false],
+    [".category-filters", "up", false],
+    [".product-card", "up", true],
+    [".juice-art", "left", false],
+    [".juice-copy", "right", false],
+    [".way-visual", "left", false],
+    [".way-copy", "right", false],
+    [".visit-copy-block", "left", false],
+    [".visit-card", "right", false],
+    [".footer-inner", "up", false]
+  ];
+
+  function initScrollReveals() {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (typeof window.IntersectionObserver !== "function") return;
+
+    const targets = [];
+    revealGroups.forEach(([selector, direction, stagger]) => {
+      document.querySelectorAll(selector).forEach((element, index) => {
+        element.dataset.reveal = direction;
+        if (stagger) {
+          element.style.setProperty("--reveal-delay", `${Math.min(index, 4) * 75}ms`);
+        }
+        targets.push({ element, stagger });
+      });
+    });
+    if (!targets.length) return;
+
+    revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+        const delay = parseFloat(getComputedStyle(entry.target).getPropertyValue("--reveal-delay")) || 0;
+        if (delay) window.setTimeout(() => entry.target.style.removeProperty("--reveal-delay"), 850 + delay);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -5% 0px" });
+
+    document.documentElement.classList.add("has-scroll-reveal");
+    targets.forEach(({ element }) => revealObserver.observe(element));
+  }
+
+  function registerProductReveals() {
+    const grid = byId("product-grid");
+    if (!grid || !revealObserver || !document.documentElement.classList.contains("has-scroll-reveal")) return;
+    grid.querySelectorAll(".product-card").forEach((card, index) => {
+      card.dataset.reveal = "up";
+      card.style.setProperty("--reveal-delay", `${Math.min(index, 4) * 75}ms`);
+      revealObserver.observe(card);
+    });
+  }
+
   function setText(key, value) {
     if (typeof value !== "string") return;
     document.querySelectorAll(`[data-config="${key}"]`).forEach((node) => { node.textContent = value; });
@@ -112,6 +173,7 @@
   function renderProducts() {
     const grid = byId("product-grid");
     const heading = byId("products-title");
+    if (revealObserver) grid.querySelectorAll(".product-card").forEach((card) => revealObserver.unobserve(card));
     grid.replaceChildren();
     const current = visibleProducts();
     heading.textContent = activeCategory === "all" ? "Our menu." : `${categoryName(activeCategory)}.`;
@@ -143,6 +205,7 @@
       grid.append(card);
     });
     if (!current.length) grid.append(make("p", "empty-products", "No items in this category yet."));
+    registerProductReveals();
   }
 
   function setCategory(id) {
@@ -320,6 +383,7 @@
   renderCategories();
   renderProducts();
   renderCart();
+  initScrollReveals();
 
   document.addEventListener("click", (event) => {
     const categoryCard = event.target.closest("[data-category-id]");
