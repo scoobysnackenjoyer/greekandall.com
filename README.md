@@ -139,9 +139,41 @@ For a specific element not covered by the easy controls, search in `styles.css` 
 | Buttons | `.button-primary`, `.nav-cta` |
 | Footer | `.site-footer`, `.footer-inner` |
 
-Other useful CSS properties: `font-size` makes text larger/smaller; `padding` adds space inside an area; `gap` changes space between items; `border-radius` makes corners more/less round; `width` and `max-width` resize pictures and boxes. For layout or phone-sized rules, ask for help if the change is unclear; the `@media` sections near the end of the stylesheet control smaller screens.
+### A step-by-step way to edit a style
 
-The display and body font names are the `--display` and `--sans` values at the top of `styles.css). Fonts are loaded in `index.html`; choosing a completely different font may require updating that font link too.
+1. Decide exactly what you want to change, such as “make the salad headline larger” or “give the juice section more space.”
+2. In `index.html`, find the section and its class name. For example, `class="juice-section"` identifies the juice section. In CSS, a class name is searched with a dot: `.juice-section`.
+3. Open `styles.css` and press **Ctrl+F**. Search for the class name or a distinctive child name, such as `.juice-copy h2` for the juice headline or `.way-salad-sticker` for the salad image.
+4. Find the property that controls the change. Change only its value and keep the punctuation around it.
+5. Save, refresh the page, and check both the computer and phone layout before changing another thing.
+
+The stylesheet has some long, compact lines. That is normal. Use **Ctrl+F** to find a selector and carefully edit just the value you need; do not replace the whole line. In a CSS rule, the words before the colon name the setting, and the value after the colon is what you change. Keep the semicolon at the end.
+
+| If you want to change… | Look for this setting | What it means |
+|---|---|---|
+| Letter color | `color` | Color of the words |
+| Background/fill color | `background` or `background-color` | Color behind the words or image |
+| Text size or thickness | `font-size` / `font-weight` | Larger/smaller text / lighter/bolder text |
+| Space between lines or letters | `line-height` / `letter-spacing` | Vertical line spacing / character spacing |
+| Text alignment | `text-align` | `left`, `center`, or `right` |
+| Space inside a box | `padding` | Space between the box edge and its contents |
+| Space outside a box | `margin` | Space around the outside of an element |
+| Space between items in a row/grid | `gap` | Distance between neighboring items |
+| Rounded corners | `border-radius` | Corner roundness |
+| Image size | `width` / `max-width` / `height` | Image dimensions or maximum size |
+| How an image fits its box | `object-fit` | `contain` shows the whole sticker; `cover` fills the box and may crop |
+
+For example, if you find `font-size: 15px;` and want slightly larger text, change only `15px` to `17px`. If you change a heading size, also check the phone view: large words may wrap differently on a narrow screen.
+
+### Desktop changes and phone changes
+
+The ordinary rule usually sets the desktop/tablet appearance. Near the bottom of `styles.css`, blocks beginning with `@media` adjust the same elements for smaller screens. The block `@media(max-width:620px)` applies to phones. If you change a heading or image size for every screen, first check whether a later phone rule sets its size again. To change only the phone version, edit the matching setting inside that phone block. Keep its braces `{ }` intact.
+
+If a selector appears multiple times, later rules override earlier ones when both apply. Start with the **EASY DESIGN CONTROLS** block for colors. For other edits, search for the selector and check the final matching rule, including phone blocks. If you're unsure which match is active, tell me the element and the screen size and I can point to the exact setting.
+
+For very small styling edits, you do not need to understand all of CSS. Change one value, refresh, compare, and undo if it looks wrong. For complicated alignment or layout changes, it is safer to describe the result you want and have me update the code.
+
+The display and body font names are the `--display` and `--sans` values at the top of `styles.css`. Fonts are loaded in `index.html`; choosing a completely different font may require updating that font link too.
 
 ## Preview your edits
 
