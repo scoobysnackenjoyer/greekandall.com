@@ -92,30 +92,32 @@ dialog{color:var(--ink)}.product-dialog,.cart-dialog{padding:0;border:0;backgrou
 .choice-row input{accent-color:var(--poppy-coral)}
 .demo-result{background:#E7F7FC;color:var(--ink)}
 @media(max-width:620px){.announcement-bar a{color:var(--poppy-sky)}}
-/* Juice section: turquoise backdrop, coral one-line tagline, 40% larger artwork. */
+/* Juice section: turquoise backdrop, coral one-line tagline, larger artwork, aligned content. */
 .juice-section{background:linear-gradient(135deg,#4FC3CD 0%,#58C1CA 50%,#61BDC7 100%)}
-.juice-inner{min-height:430px;grid-template-columns:minmax(0,395px) minmax(0,1fr) auto;gap:clamp(18px,2.2vw,28px)}
+.juice-inner{min-height:430px;grid-template-columns:minmax(0,395px) minmax(0,1fr);gap:clamp(18px,2.2vw,28px)}
 .juice-art{display:block;width:100%;max-width:395px;aspect-ratio:1;object-fit:contain;margin-inline:auto;border-radius:0;box-shadow:none}
+.juice-copy{grid-column:2;grid-row:1}
 .juice-copy .eyebrow{color:var(--ink)}
 .juice-copy h2{margin-bottom:11px;font-size:clamp(36px,4.2vw,54px);letter-spacing:.015em;line-height:1.08;white-space:nowrap;color:var(--ink)}
 .juice-copy h2 em{color:#F15B45;font-style:normal;letter-spacing:.015em}
+.juice-inner>.button{grid-column:2;grid-row:2;justify-self:start}
 @media(max-width:1050px){
   .juice-inner{min-height:0;grid-template-columns:minmax(0,35%) minmax(0,1fr);gap:clamp(18px,3vw,28px);padding-block:28px}
   .juice-art{max-width:100%}
   .juice-copy h2{font-size:clamp(32px,4.2vw,46px)}
-  .juice-inner>.button{grid-column:2;justify-self:start}
 }
 @media(max-width:620px){
   .juice-inner{grid-template-columns:minmax(0,40%) minmax(0,1fr);gap:12px;padding-block:22px;text-align:left}
   .juice-art{width:100%;max-width:182px;justify-self:start}
+  .juice-copy{grid-column:2;grid-row:1}
   .juice-copy .eyebrow{justify-content:flex-start}
   .juice-copy h2{font-size:clamp(15px,4vw,23px);letter-spacing:.01em}
   .juice-copy h2 em{letter-spacing:.01em}
-  .juice-inner>.button{grid-column:2;justify-self:start}
 }
 @media(max-width:370px){
   .juice-inner{grid-template-columns:minmax(0,1fr);text-align:left}
   .juice-art{width:min(182px,54vw);max-width:182px}
+  .juice-copy{grid-column:1;grid-row:2}
   .juice-copy h2{font-size:22px}
-  .juice-inner>.button{grid-column:1;justify-self:start}
+  .juice-inner>.button{grid-column:1;grid-row:3;justify-self:start}
 }
