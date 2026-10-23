@@ -92,12 +92,16 @@ dialog{color:var(--ink)}.product-dialog,.cart-dialog{padding:0;border:0;backgrou
 .choice-row input{accent-color:var(--poppy-coral)}
 .demo-result{background:#E7F7FC;color:var(--ink)}
 @media(max-width:620px){.announcement-bar a{color:var(--poppy-sky)}}
-/* Selected juice treatment: original artwork on turquoise, scaled up slightly. */
+/* Selected juice treatment: original artwork on turquoise, enlarged another 20%. */
 .juice-section{background:linear-gradient(135deg,#4FC3CD 0%,#58C1CA 50%,#61BDC7 100%)}
-.juice-inner{min-height:275px;grid-template-columns:minmax(190px,235px) 1fr auto;gap:32px}
-.juice-art{display:block;width:100%;max-width:235px;aspect-ratio:1;object-fit:contain;margin-inline:auto;border-radius:0;box-shadow:none}
+.juice-inner{min-height:340px;grid-template-columns:minmax(230px,282px) 1fr auto;gap:32px}
+.juice-art{display:block;width:100%;max-width:282px;aspect-ratio:1;object-fit:contain;margin-inline:auto;border-radius:0;box-shadow:none}
 .juice-copy .eyebrow{color:var(--ink)}
+@media(max-width:900px){
+  .juice-inner{grid-template-columns:minmax(230px,282px) 1fr;gap:20px}
+  .juice-inner>.button{grid-column:2;justify-self:start}
+}
 @media(max-width:620px){
-  .juice-inner{min-height:0;grid-template-columns:minmax(84px,108px) 1fr;gap:12px;padding-block:20px}
-  .juice-art{width:100%;max-width:108px;border-radius:0}
+  .juice-inner{min-height:0;grid-template-columns:minmax(108px,130px) 1fr;gap:12px;padding-block:20px}
+  .juice-art{width:100%;max-width:130px;border-radius:0}
 }
