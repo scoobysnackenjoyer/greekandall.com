@@ -92,3 +92,10 @@ dialog{color:var(--ink)}.product-dialog,.cart-dialog{padding:0;border:0;backgrou
 .choice-row input{accent-color:var(--poppy-coral)}
 .demo-result{background:#E7F7FC;color:var(--ink)}
 @media(max-width:620px){.announcement-bar a{color:var(--poppy-sky)}}
+/* Juice highlight artwork */
+.juice-inner{min-height:260px;grid-template-columns:minmax(170px,210px) 1fr auto;gap:32px}
+.juice-art{display:block;width:100%;max-width:210px;aspect-ratio:1;object-fit:contain;margin-inline:auto;border-radius:18px;box-shadow:0 12px 28px rgba(17,17,17,.12)}
+@media(max-width:620px){
+  .juice-inner{min-height:0;grid-template-columns:minmax(76px,98px) 1fr;gap:12px;padding-block:20px}
+  .juice-art{width:100%;max-width:98px;border-radius:12px}
+}
