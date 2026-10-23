@@ -180,12 +180,12 @@
 
     current.forEach((product) => {
       const card = make("article", "product-card");
+      card.dataset.productId = product.id;
       const open = make("button", "product-open");
       open.type = "button";
       open.dataset.openProduct = product.id;
       open.setAttribute("aria-label", `View ${product.name}, ${money(product.price)}`);
       const imageFrame = make("span", "product-image-frame");
-      if (product.badge) imageFrame.append(make("span", "product-badge", product.badge));
       const image = make("img", "product-image");
       image.src = product.image || "assets/hero-avocado-beach.svg";
       image.alt = product.imageAlt || product.name;
@@ -200,11 +200,29 @@
       add.type = "button";
       add.dataset.quickAdd = product.id;
       add.setAttribute("aria-label", `Quick add ${product.name}`);
-      footer.append(add);
+      const quantityControl = make("div", "product-quantity-control");
+      quantityControl.hidden = true;
+      quantityControl.setAttribute("role", "group");
+      quantityControl.setAttribute("aria-label", product.name + " quantity in bag");
+      const decrease = make("button", "product-quantity-step", "−");
+      decrease.type = "button";
+      decrease.dataset.productQuantity = "decrease";
+      decrease.dataset.productId = product.id;
+      decrease.setAttribute("aria-label", "Remove one " + product.name + " from bag");
+      const quantity = make("span", "product-quantity-value", "0");
+      quantity.setAttribute("aria-live", "polite");
+      const increase = make("button", "product-quantity-step", "+");
+      increase.type = "button";
+      increase.dataset.productQuantity = "increase";
+      increase.dataset.productId = product.id;
+      increase.setAttribute("aria-label", "Add one " + product.name);
+      quantityControl.append(decrease, quantity, increase);
+      footer.append(add, quantityControl);
       card.append(open, footer);
       grid.append(card);
     });
     if (!current.length) grid.append(make("p", "empty-products", "No items in this category yet."));
+    syncProductQuantityControls();
     registerProductReveals();
   }
 
@@ -320,7 +338,47 @@
   function cartCount() { return cart.reduce((sum, item) => sum + item.quantity, 0); }
   function cartSubtotal() { return cart.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0); }
 
-  function addToCart(product, selections, extras, quantity, showBag = true) {
+  function productQuantity(productId) {
+    return cart.reduce((sum, item) => item.productId === productId ? sum + item.quantity : sum, 0);
+  }
+
+  function hasCustomOptions(product) {
+    return Boolean(product && ((product.modifierGroups || []).length || (product.extras || []).length));
+  }
+
+  function syncProductQuantityControls() {
+    document.querySelectorAll(".product-card[data-product-id]").forEach((card) => {
+      const product = products.find((item) => item.id === card.dataset.productId);
+      const add = card.querySelector(".quick-add");
+      const control = card.querySelector(".product-quantity-control");
+      const display = card.querySelector(".product-quantity-value");
+      if (!product || !add || !control || !display) return;
+
+      const quantity = productQuantity(product.id);
+      const addHadFocus = document.activeElement === add;
+      const controlHadFocus = control.contains(document.activeElement);
+      add.hidden = quantity > 0;
+      control.hidden = quantity <= 0;
+      display.textContent = String(quantity);
+      control.setAttribute("aria-label", product.name + ": " + quantity + " " + (quantity === 1 ? "item" : "items") + " in bag");
+      if (addHadFocus && quantity > 0) control.querySelector('[data-product-quantity="increase"]')?.focus({ preventScroll: true });
+      if (controlHadFocus && quantity === 0) add.focus({ preventScroll: true });
+    });
+  }
+
+  function decreaseProductQuantity(productId) {
+    for (let index = cart.length - 1; index >= 0; index -= 1) {
+      const line = cart[index];
+      if (line.productId !== productId) continue;
+      if (line.quantity > 1) line.quantity -= 1;
+      else cart.splice(index, 1);
+      saveCart();
+      renderCart();
+      return;
+    }
+  }
+
+  function addToCart(product, selections, extras, quantity) {
     const key = JSON.stringify([product.id, selections.map((item) => item.name), extras.map((item) => item.name)]);
     const unitPrice = Number(product.price) + selections.reduce((sum, item) => sum + Number(item.price || 0), 0) + extras.reduce((sum, item) => sum + Number(item.price || 0), 0);
     const existing = cart.find((item) => item.key === key);
@@ -328,7 +386,6 @@
     else cart.push({ key, productId: product.id, quantity, unitPrice, selections, extras });
     saveCart();
     renderCart();
-    if (showBag) openCart();
   }
 
   function renderCart() {
@@ -373,6 +430,7 @@
       row.append(image, body, controls);
       byId("cart-lines").append(row);
     });
+    syncProductQuantityControls();
   }
 
   function openCart() {
@@ -380,12 +438,86 @@
     if (!dialog.open) dialog.showModal();
   }
 
+  function animateIntoBag(sourceImage) {
+    const bag = byId("open-cart");
+    const prefersLessMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!sourceImage || !bag || prefersLessMotion || typeof document.createElement("img").animate !== "function") return;
+    const from = sourceImage.getBoundingClientRect();
+    const to = bag.getBoundingClientRect();
+    if (!from.width || !from.height || !to.width || !to.height) return;
+
+    const flight = document.createElement("img");
+    flight.className = "cart-flight-image";
+    flight.src = sourceImage.currentSrc || sourceImage.src;
+    flight.alt = "";
+    flight.setAttribute("aria-hidden", "true");
+    Object.assign(flight.style, {
+      left: from.left + "px", top: from.top + "px",
+      width: from.width + "px", height: from.height + "px"
+    });
+    document.body.append(flight);
+
+    const dx = to.left + to.width / 2 - (from.left + from.width / 2);
+    const dy = to.top + to.height / 2 - (from.top + from.height / 2);
+    const arc = Math.min(70, Math.max(28, Math.abs(dy) * .18));
+    const animation = flight.animate([
+      { transform: "translate3d(0,0,0) scale(1) rotate(0deg)", opacity: 1, offset: 0 },
+      { transform: "translate3d(" + dx * .55 + "px," + (dy * .5 - arc) + "px,0) scale(.72) rotate(-8deg)", opacity: 1, offset: .58 },
+      { transform: "translate3d(" + dx + "px," + dy + "px,0) scale(.12) rotate(14deg)", opacity: .18, offset: 1 }
+    ], { duration: 760, easing: "cubic-bezier(.2,.8,.2,1)", fill: "forwards" });
+
+    animation.finished.then(() => {
+      flight.remove();
+      bag.classList.remove("is-catching");
+      void bag.offsetWidth;
+      bag.classList.add("is-catching");
+      const count = byId("cart-count");
+      count.classList.remove("is-bumping");
+      void count.offsetWidth;
+      count.classList.add("is-bumping");
+      window.setTimeout(() => {
+        bag.classList.remove("is-catching");
+        count.classList.remove("is-bumping");
+      }, 600);
+    }).catch(() => flight.remove());
+  }
+
+  document.addEventListener("click", (event) => {
+    const trigger = event.target instanceof Element
+      ? event.target.closest(".quick-add, [data-product-quantity='increase']")
+      : null;
+    if (!trigger) return;
+    const productId = trigger.dataset.quickAdd || trigger.dataset.productId;
+    const product = products.find((item) => item.id === productId);
+    if (hasCustomOptions(product)) return;
+    animateIntoBag(trigger.closest(".product-card")?.querySelector(".product-image"));
+  }, true);
+
+  document.addEventListener("submit", (event) => {
+    const form = event.target instanceof Element ? event.target.closest(".product-options-form") : null;
+    if (!form) return;
+    animateIntoBag(document.querySelector("#product-dialog-content .dialog-product-image"));
+  }, true);
+
   renderCategories();
   renderProducts();
   renderCart();
   initScrollReveals();
 
   document.addEventListener("click", (event) => {
+    const quantityAction = event.target.closest("[data-product-quantity]");
+    if (quantityAction) {
+      const product = products.find((item) => item.id === quantityAction.dataset.productId);
+      if (!product) return;
+      if (quantityAction.dataset.productQuantity === "decrease") {
+        decreaseProductQuantity(product.id);
+      } else if (quantityAction.dataset.productQuantity === "increase") {
+        if (hasCustomOptions(product)) openProduct(product.id);
+        else addToCart(product, [], [], 1);
+      }
+      return;
+    }
+
     const categoryCard = event.target.closest("[data-category-id]");
     if (categoryCard) {
       setCategory(categoryCard.dataset.categoryId);
@@ -398,18 +530,8 @@
     const quick = event.target.closest("[data-quick-add]");
     if (quick) {
       const product = products.find((item) => item.id === quick.dataset.quickAdd);
-      const hasCustomOptions = product && ((product.modifierGroups || []).length > 0 || (product.extras || []).length > 0);
-      if (product && hasCustomOptions) openProduct(product.id);
-      else if (product) {
-        addToCart(product, [], [], 1, false);
-        const originalText = quick.textContent;
-        quick.textContent = "Added ✓";
-        quick.setAttribute("aria-label", `Added ${product.name} to your bag`);
-        window.setTimeout(() => {
-          quick.textContent = originalText;
-          quick.setAttribute("aria-label", `Quick add ${product.name}`);
-        }, 1400);
-      }
+      if (hasCustomOptions(product)) openProduct(product.id);
+      else if (product) addToCart(product, [], [], 1);
     }
   });
 
