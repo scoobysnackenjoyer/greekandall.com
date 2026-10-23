@@ -54,7 +54,8 @@ window.SITE_CONFIG = {
     { id: "citrus-zing-juice", categoryId: "cold-pressed-juices", name: "Citrus zing", description: "A zippy orange, carrot and ginger blend in a small glass bottle.", price: 149, image: "assets/mascot-juice.svg", imageAlt: "A small juice bottle mascot", modifierGroups: [{ name: "Choose bottle size", required: true, choices: [{ name: "250 ml", price: 0 }, { name: "350 ml", price: 40 }] }], extras: [] },
     { id: "ruby-garden-juice", categoryId: "cold-pressed-juices", name: "Ruby garden juice", description: "Beetroot, apple and lemon, freshly pressed into a little bottle.", price: 149, image: "assets/mascot-juice.svg", imageAlt: "A small juice bottle mascot", modifierGroups: [], extras: [] }
   ],
-  juiceHeadline: "Sip happy. Feel sunny.",
+  juiceHeadlineLead: "Sip happy.",
+  juiceHeadlineAccent: "Feel sunny.",
   juiceText: "Fresh cold-pressed juices in little glass bottles.",
   ourWayText: "No sad salads. No boring bowls. Just Greek-inspired food, big flavour and a little fun in every bite.",
   locationText: "Come hungry. Leave happy. Find us in your neighbourhood soon.",
