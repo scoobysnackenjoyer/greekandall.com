@@ -145,16 +145,16 @@ html.has-scroll-reveal .product-card[data-reveal]{
 }
 
 
-/* Salad story feature: approved poppy coral with the transparent salad sticker. */
-.our-way-section{background:var(--poppy-coral);color:var(--ink)}
+/* Salad story feature: cream background with coral type and a clean transparent sticker. */
+.our-way-section{background:var(--paper);color:var(--ink)}
 .our-way{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8%;padding-block:68px}
 .way-visual{height:auto;min-height:0;overflow:visible;align-self:center}
-.way-salad-sticker{display:block;width:min(100%,440px);height:auto;object-fit:contain;margin-inline:auto;filter:drop-shadow(0 16px 18px #11111124)}
+.way-salad-sticker{display:block;width:min(100%,440px);height:auto;object-fit:contain;margin-inline:auto}
 .way-copy{max-width:520px}
 .way-copy .eyebrow{color:var(--ink)}
 .way-copy h2{color:var(--ink)}
-.way-copy h2 em{color:#fff;text-decoration-color:var(--poppy-green)}
-.way-copy>p:not(.eyebrow){color:var(--ink)}
+.way-copy h2 em{color:var(--poppy-coral);text-decoration-color:var(--poppy-green)}
+.way-copy>p:not(.eyebrow){color:var(--muted)}
 .way-copy .text-link{color:var(--ink);text-decoration-color:var(--poppy-green)}
 @media(max-width:620px){
   .our-way{grid-template-columns:1fr;gap:12px;padding-block:40px}
