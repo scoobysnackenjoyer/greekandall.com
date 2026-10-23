@@ -219,3 +219,17 @@ body{background:var(--edit-page-background);color:var(--edit-main-heading)}
 .visit-inner .eyebrow{color:var(--edit-visit-label)}
 .button-primary{background:var(--edit-button-background);color:var(--edit-button-text)}
 .button-primary:hover,.nav-cta:hover{background:var(--edit-button-hover);color:var(--edit-button-text)}
+
+/* Approved underline: match coral heading highlights to the deep olive-green lower-section background. */
+.hero h1 em,
+.section-heading h2 em,
+.products-heading h2 em,
+.juice-copy h2 em,
+.way-copy h2 em,
+.dialog-product-copy h2 em,
+.cart-header h2 em {
+  text-decoration-line: underline;
+  text-decoration-color: var(--edit-visit-background);
+  text-decoration-thickness: .16em;
+  text-underline-offset: .08em;
+}
