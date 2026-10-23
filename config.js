@@ -8,10 +8,10 @@
 window.SITE_CONFIG = {
   brandName: "Greek & All",
   brandMark: "G&A",
-  tagline: "Good food. Big mood.",
+  tagline: "Come hungry. Leave happy.",
   // LOGO REPLACEMENT POINT: put your new logo in assets/ and update this path.
   logoUrl: "assets/greek-and-all-logo.png",
-  headline: "Come hungry.\nLeave happy.",
+  headline: "Good food.\nBig mood.",
   intro: "Rice and salad bowls, pita pockets, sandwiches, smoothie bowls, smoothies, shakes and little bottles of cold-pressed juice. Come hungry. Leave happy.",
   heroNote: "Good food. Big mood.",
   // IMAGE REPLACEMENT POINT: local files in assets/ are easiest to keep together.
