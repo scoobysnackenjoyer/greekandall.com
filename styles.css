@@ -162,3 +162,60 @@ html.has-scroll-reveal .product-card[data-reveal]{
   .way-copy{order:1}
   .way-salad-sticker{width:min(100%,300px)}
 }
+
+
+/* ======================================================================
+   EASY DESIGN CONTROLS — EDIT THESE VALUES FIRST
+   Change the color after the colon; keep the variable name and semicolon.
+   These defaults match the current website appearance.
+   ====================================================================== */
+:root{
+  --edit-page-background:#FFF7E8;
+  --edit-header-background:rgba(255,247,232,.94);
+  --edit-announcement-background:#31543B;
+  --edit-menu-background:#FFFFFF;
+  --edit-juice-background:#56C3CC;
+  --edit-salad-background:#FFF7E8;
+  --edit-visit-background:#31543B;
+  --edit-footer-background:#31543B;
+  --edit-main-heading:#111111;
+  --edit-main-copy:#675F52;
+  --edit-coral-highlight:#F15B45;
+  --edit-salad-heading:#111111;
+  --edit-salad-copy:#675F52;
+  --edit-juice-heading:#111111;
+  --edit-juice-copy:#665C5C;
+  --edit-visit-heading:#FFFFFF;
+  --edit-visit-highlight:#111111;
+  --edit-visit-copy:#FFFFFF;
+  --edit-visit-label:#8FD8F5;
+  --edit-button-background:#FFC928;
+  --edit-button-text:#111111;
+  --edit-button-hover:#E8B41D;
+  --edit-hero-art-background:#8FD8F5;
+}
+body{background:var(--edit-page-background);color:var(--edit-main-heading)}
+.site-header{background:var(--edit-header-background)}
+.main-nav{background-color:var(--edit-page-background)}
+.announcement-bar{background:var(--edit-announcement-background)}
+.menu-section{background:var(--edit-menu-background)}
+.juice-section{background:var(--edit-juice-background)}
+.our-way-section{background:var(--edit-salad-background)}
+.visit-section{background:var(--edit-visit-background)}
+.site-footer{background:var(--edit-footer-background)}
+.hero-art-blob{background:var(--edit-hero-art-background)}
+.hero h1,.section-heading h2,.products-heading h2{color:var(--edit-main-heading)}
+.hero h1 em,.section-heading h2 em,.products-heading h2 em{color:var(--edit-coral-highlight)}
+.hero-text,.section-intro p,.products-heading>p{color:var(--edit-main-copy)}
+.way-copy h2{color:var(--edit-salad-heading)}
+.way-copy h2 em{color:var(--edit-coral-highlight)}
+.way-copy>p:not(.eyebrow){color:var(--edit-salad-copy)}
+.juice-copy h2{color:var(--edit-juice-heading)}
+.juice-copy h2 em{color:var(--edit-coral-highlight)}
+.juice-copy>p:last-child{color:var(--edit-juice-copy)}
+.visit-inner h2{color:var(--edit-visit-heading)}
+.visit-inner h2 em{color:var(--edit-visit-highlight)}
+.visit-copy{color:var(--edit-visit-copy)}
+.visit-inner .eyebrow{color:var(--edit-visit-label)}
+.button-primary{background:var(--edit-button-background);color:var(--edit-button-text)}
+.button-primary:hover,.nav-cta:hover{background:var(--edit-button-hover);color:var(--edit-button-text)}
