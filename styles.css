@@ -100,7 +100,6 @@ dialog{color:var(--ink)}.product-dialog,.cart-dialog{padding:0;border:0;backgrou
 .juice-copy .eyebrow{color:var(--ink)}
 .juice-copy h2{margin-bottom:11px;font-size:clamp(36px,4.2vw,54px);letter-spacing:.015em;line-height:1.08;white-space:nowrap;color:var(--ink)}
 .juice-copy h2 em{color:#F15B45;font-style:normal;letter-spacing:.015em}
-.juice-inner>.button{grid-column:2;grid-row:2;justify-self:start}
 @media(max-width:1050px){
   .juice-inner{min-height:0;grid-template-columns:minmax(0,35%) minmax(0,1fr);gap:clamp(18px,3vw,28px);padding-block:28px}
   .juice-art{max-width:100%}
@@ -119,5 +118,4 @@ dialog{color:var(--ink)}.product-dialog,.cart-dialog{padding:0;border:0;backgrou
   .juice-art{width:min(182px,54vw);max-width:182px}
   .juice-copy{grid-column:1;grid-row:2}
   .juice-copy h2{font-size:22px}
-  .juice-inner>.button{grid-column:1;grid-row:3;justify-self:start}
-}
+  }
